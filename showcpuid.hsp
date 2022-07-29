@@ -1,0 +1,16 @@
+#include "cpuid.as"
+dim result,4
+cpuid result,0,0
+sdim vendorstring,64
+lpoke vendorstring,4*0,result(1)
+lpoke vendorstring,4*1,result(3)
+lpoke vendorstring,4*2,result(2)
+mes vendorstring
+sdim brandstring,64
+cpuid result,0x80000002,0
+memcpy brandstring,result,16,16*0,0
+cpuid result,0x80000003,0
+memcpy brandstring,result,16,16*1,0
+cpuid result,0x80000004,0
+memcpy brandstring,result,16,16*2,0
+mes brandstring
